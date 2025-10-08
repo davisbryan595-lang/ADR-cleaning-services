@@ -8,6 +8,7 @@ import { useEffect, useState } from "react"
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false)
+
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 10)
     onScroll()
@@ -18,46 +19,64 @@ export function Navbar() {
   return (
     <header
       className={cn(
-        "sticky top-0 z-50 w-full transition-all",
-        scrolled ? "bg-black/70 backdrop-blur border-b border-border" : "bg-transparent",
+        "fixed top-0 left-0 w-full z-50 transition-all duration-300",
+        scrolled
+          ? "bg-black/70 backdrop-blur-md border-b border-border shadow-md"
+          : "bg-transparent"
       )}
-      aria-label="Primary"
+      aria-label="Primary Navigation"
     >
       <div className="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between">
+        {/* Logo & Brand */}
         <Link href="#home" className="flex items-center gap-3">
-          <Image src="/logo.png" alt="ADR Cleaning Service logo" width={36} height={36} />
-          <span className="font-semibold tracking-tight">ADR Cleaning Service</span>
+          <Image
+            src="/logo.png"
+            alt="ADR Cleaning Service logo"
+            width={40}
+            height={40}
+            priority
+          />
+          <span className="font-semibold tracking-tight text-white">
+            ADR Cleaning Service
+          </span>
         </Link>
-        <nav className="hidden md:flex items-center gap-6">
-          <a className="hover:text-primary" href="#services">
+
+        {/* Desktop Nav */}
+        <nav className="hidden md:flex items-center gap-6 text-sm font-medium">
+          <a className="hover:text-[var(--brand-gold)] transition-colors" href="#services">
             Services
           </a>
-          <a className="hover:text-primary" href="#about">
+          <a className="hover:text-[var(--brand-gold)] transition-colors" href="#about">
             About
           </a>
-          <a className="hover:text-primary" href="#gallery">
+          <a className="hover:text-[var(--brand-gold)] transition-colors" href="#gallery">
             Gallery
           </a>
-          <a className="hover:text-primary" href="#testimonials">
+          <a className="hover:text-[var(--brand-gold)] transition-colors" href="#testimonials">
             Testimonials
           </a>
-          <a className="hover:text-primary" href="#pricing">
+          <a className="hover:text-[var(--brand-gold)] transition-colors" href="#pricing">
             Pricing
           </a>
-          <a className="hover:text-primary" href="#contact">
+          <a className="hover:text-[var(--brand-gold)] transition-colors" href="#contact">
             Contact
           </a>
         </nav>
+
+        {/* Action Buttons */}
         <div className="flex items-center gap-2">
-          <Button asChild variant="default" className="gold-gradient text-[color:var(--primary-foreground)]">
-            <a href="tel:+12148139919" aria-label="Call ADR Cleaning Service">
+          <Button
+            asChild
+            className="gold-gradient text-[color:var(--primary-foreground)] shadow-md"
+          >
+            <a href="tel:+15167127244" aria-label="Call ADR Cleaning Service">
               Call
             </a>
           </Button>
           <Button
             asChild
             variant="outline"
-            className="border-primary/60 text-primary hover:bg-primary/10 bg-transparent"
+            className="border-[var(--brand-gold)] text-[var(--brand-gold)] hover:bg-[var(--brand-gold)]/10"
           >
             <a href="#contact">Get a Quote</a>
           </Button>

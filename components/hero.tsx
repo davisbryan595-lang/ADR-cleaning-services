@@ -1,79 +1,66 @@
 "use client"
 
-import { motion } from "framer-motion"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
+import { motion } from "framer-motion"
 
 export function Hero() {
   return (
-    <div className="relative w-full min-h-[80svh] md:min-h-[92svh] flex items-center">
-      {/* Background Image */}
-      <div className="absolute inset-0 -z-20 w-full h-full">
-        <Image
-          src="/modern-clean-home-interior-dark-background.jpg"
-          alt="Clean modern home interior background"
-          fill
-          className="object-cover w-full h-full"
-          priority
-        />
-        {/* Gold Overlay */}
-        <div className="absolute inset-0 pointer-events-none gold-gradient opacity-20" />
-      </div>
+    <section
+      id="home"
+      className="relative w-full min-h-screen flex items-center justify-center pt-[72px] md:pt-[80px] overflow-hidden"
+    >
+      {/* Background image */}
+      <Image
+        src="/hero-bg.jpg"
+        alt="Professional cleaning service background"
+        fill
+        priority
+        className="object-cover object-center brightness-75"
+      />
 
-      {/* Content */}
-      <div className="relative mx-auto max-w-7xl px-6 md:px-12 grid gap-8 md:grid-cols-2 md:items-center w-full">
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.4 }}
-          transition={{ duration: 0.6 }}
-          className="glass p-8 md:p-12 rounded-xl"
+      {/* Overlay content */}
+      <div className="relative z-10 max-w-4xl text-center text-white px-6 sm:px-8 md:px-12">
+        <motion.h1
+          initial={{ opacity: 0, y: 25 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="font-bold mb-4 leading-tight text-[clamp(2rem,5vw,4.5rem)]"
         >
-          <p className="text-sm md:text-base font-medium text-primary/90">Dallas, Texas</p>
-          <h1 className="text-4xl md:text-6xl font-semibold mt-3 md:mt-4">
-            Professional Home Cleaning, Tailored for You
-          </h1>
-          <p className="text-base md:text-lg opacity-85 mt-4">
-            Reliable residential cleaning — houses, apartments, and extra services.
-          </p>
-          <div className="mt-6 flex flex-wrap items-center gap-4">
-            <Button className="gold-gradient text-[color:var(--primary-foreground)] animate-pulse text-sm md:text-base md:px-6 md:h-14">
-              Get a Quote
-            </Button>
-            <Button
-              variant="outline"
-              asChild
-              className="border-primary/60 text-primary hover:bg-primary/10 bg-transparent text-sm md:text-base md:px-6 md:h-14"
-            >
-              <a href="#services">View Services</a>
-            </Button>
-          </div>
-          <div className="mt-6 grid grid-cols-3 gap-4 text-center">
-            <Stat label="Happy Clients" value="250+" />
-            <Stat label="Avg. Rating" value="4.9/5" />
-            <Stat label="Years Serving" value="5+" />
-          </div>
-        </motion.div>
+          Experience the <span className="text-primary">Sparkle</span> of Clean Living
+        </motion.h1>
+
+        <motion.p
+          initial={{ opacity: 0, y: 25 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1 }}
+          className="text-[clamp(1rem,2.5vw,1.5rem)] text-gray-200 mb-8 leading-relaxed"
+        >
+          Professional, reliable, and eco-friendly cleaning services for homes and businesses.
+        </motion.p>
 
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.4 }}
-          transition={{ duration: 0.7, delay: 0.1 }}
-          className="hidden md:block justify-self-end"
+          initial={{ opacity: 0, y: 25 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.2 }}
+          className="flex justify-center gap-4 flex-wrap"
         >
-          <Image src="/logo.png" alt="ADR Cleaning Service logo" width={500} height={500} />
+          <Button
+            asChild
+            className="gold-gradient text-[color:var(--primary-foreground)] text-base sm:text-lg px-5 sm:px-6 py-3 sm:py-4 rounded-xl"
+          >
+            <a href="#contact">Get a Free Quote</a>
+          </Button>
+
+          <Button
+            asChild
+            variant="outline"
+            className="border-primary/60 text-primary hover:bg-primary/10 text-base sm:text-lg px-5 sm:px-6 py-3 sm:py-4 rounded-xl"
+          >
+            <a href="#services">Our Services</a>
+          </Button>
         </motion.div>
       </div>
-    </div>
-  )
-}
-
-function Stat({ label, value }: { label: string; value: string }) {
-  return (
-    <div className="rounded-lg border border-border/60 p-4 md:p-6 bg-black/30">
-      <div className="text-xl md:text-2xl font-semibold">{value}</div>
-      <div className="text-xs md:text-sm opacity-75">{label}</div>
-    </div>
+    </section>
   )
 }
