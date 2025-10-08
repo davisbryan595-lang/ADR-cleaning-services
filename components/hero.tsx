@@ -12,7 +12,7 @@ export function Hero() {
     >
       {/* Background image */}
       <Image
-        src="/hero-bg.jpg"
+        src="/modern-clean-home-interior-dark-background.jpg"
         alt="Professional cleaning service background"
         fill
         priority
