@@ -127,6 +127,7 @@
 
 :root {
   --brand-gold: #d4af37;
+  --brand-gold-light: #f3d678;
 }
 
 /* Floating animation for logo */
@@ -139,20 +140,53 @@
   animation: float 3s ease-in-out infinite;
 }
 
-/* Liquid fill hover effect */
-a::before {
+/* -------------------------------
+   🌟 Global Gold Liquid Button Effect
+---------------------------------- */
+button,
+.button,
+.btn {
+  position: relative;
+  overflow: hidden;
+  background: transparent;
+  color: black;
+  border: 1px solid var(--brand-gold);
+  border-radius: 8px;
+  transition: color 0.3s ease, box-shadow 0.3s ease;
+  z-index: 1;
+}
+
+button::before,
+.button::before,
+.btn::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: var(--brand-gold);
+  background: linear-gradient(90deg, var(--brand-gold), var(--brand-gold-light), var(--brand-gold));
   transform: scaleX(0);
   transform-origin: left;
-  transition: transform 0.5s ease-in-out;
+  transition: transform 0.6s cubic-bezier(0.25, 1, 0.3, 1);
   z-index: 0;
-  border-radius: 6px;
+  border-radius: inherit;
 }
 
-a:hover::before {
+button:hover::before,
+.button:hover::before,
+.btn:hover::before {
   transform: scaleX(1);
 }
 
+button:hover,
+.button:hover,
+.btn:hover {
+  color: black;
+  box-shadow: 0 0 12px var(--brand-gold-light);
+}
+
+/* Keep text above animation */
+button span,
+.button span,
+.btn span {
+  position: relative;
+  z-index: 2;
+}
