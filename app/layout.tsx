@@ -1,10 +1,12 @@
+"use client"
+
 import type React from "react"
 import type { Metadata } from "next"
 import { GeistSans } from "geist/font/sans"
 import { GeistMono } from "geist/font/mono"
 import { Analytics } from "@vercel/analytics/next"
 import "./globals.css"
-import { Suspense } from "react"
+import { Suspense, useEffect } from "react"
 
 // New imports
 import { Toaster } from "@/components/ui/toaster"
@@ -13,11 +15,13 @@ import { Footer } from "@/components/footer"
 
 export const metadata: Metadata = {
   title: "ADR Cleaning Service LLC | Dallas, TX",
-  description: "Professional home cleaning, tailored for you. Serving Dallas, TX & surrounding areas.",
+  description:
+    "Professional home cleaning, tailored for you. Serving Dallas, TX & surrounding areas.",
   generator: "v0.app",
   openGraph: {
     title: "ADR Cleaning Service LLC",
-    description: "Professional home cleaning, tailored for you. Serving Dallas, TX & surrounding areas.",
+    description:
+      "Professional home cleaning, tailored for you. Serving Dallas, TX & surrounding areas.",
     images: ["/logo.png"],
     type: "website",
     url: "https://example.com",
@@ -25,7 +29,8 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "ADR Cleaning Service LLC",
-    description: "Professional home cleaning, tailored for you. Serving Dallas, TX & surrounding areas.",
+    description:
+      "Professional home cleaning, tailored for you. Serving Dallas, TX & surrounding areas.",
     images: ["/logo.png"],
   },
 }
@@ -35,6 +40,24 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  // ✅ Smooth Scroll for all anchor links site-wide
+  useEffect(() => {
+    const handleSmoothScroll = (e: MouseEvent) => {
+      const target = e.target as HTMLAnchorElement
+      if (target.tagName === "A" && target.getAttribute("href")?.startsWith("#")) {
+        e.preventDefault()
+        const id = target.getAttribute("href")!.substring(1)
+        const el = document.getElementById(id)
+        if (el) {
+          el.scrollIntoView({ behavior: "smooth" })
+        }
+      }
+    }
+
+    document.addEventListener("click", handleSmoothScroll)
+    return () => document.removeEventListener("click", handleSmoothScroll)
+  }, [])
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
@@ -63,7 +86,10 @@ export default function RootLayout({
           <Toaster />
         </Suspense>
         <Analytics />
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
       </body>
     </html>
   )
