@@ -1,0 +1,16 @@
+{
+  "plans": [
+    {
+      "name": "1 Bed / 1 Bath",
+      "lines": ["First-time: $175", "Monthly: $150", "Bi-weekly: $125"]
+    },
+    {
+      "name": "3 Bed / 2 Bath",
+      "lines": ["First-time Deep: $200", "Regular Bi-weekly: $150"]
+    },
+    {
+      "name": "Extras",
+      "lines": ["Extra Bathroom: $25", "Windows Cleaning: $22", "Custom Extra: ~$25"]
+    }
+  ]
+}

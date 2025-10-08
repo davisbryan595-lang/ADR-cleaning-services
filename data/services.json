@@ -1,0 +1,28 @@
+[
+  {
+    "title": "1 Bedroom, 1 Bathroom",
+    "firstTime": 175,
+    "monthly": 150,
+    "biWeekly": 125,
+    "extras": []
+  },
+  {
+    "title": "3 Bedroom, 2 Bathroom",
+    "firstTimeDeep": 200,
+    "regularBiWeekly": 150,
+    "extras": []
+  },
+  {
+    "title": "Senior Citizens",
+    "discount": "15% discount",
+    "note": "Applied to eligible services"
+  },
+  {
+    "title": "Extras",
+    "items": [
+      { "name": "Extra Bathroom", "price": 25 },
+      { "name": "Windows Cleaning", "price": 22 },
+      { "name": "Custom Extra Service (typical)", "price": 25 }
+    ]
+  }
+]
