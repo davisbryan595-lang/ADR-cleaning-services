@@ -3,64 +3,43 @@
 import pricing from "@/data/pricing.json"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { motion } from "framer-motion"
 
 export function PricingTable() {
   return (
-    <section id="pricing" className="mx-auto max-w-6xl px-4 py-20">
-      <h2 className="text-3xl md:text-4xl font-semibold text-center mb-12 text-[var(--brand-gold)]">
-        Pricing Plans
-      </h2>
+    <div className="mx-auto max-w-6xl px-4 py-16">
+      <h2 className="text-3xl md:text-4xl font-semibold mb-10 text-center text-[#F8F6F5]">Pricing</h2>
 
-      <div className="grid gap-10 md:grid-cols-3">
-        {pricing.plans.map((p, idx) => (
-          <motion.div
+      <div className="grid gap-8 md:grid-cols-3">
+        {pricing.plans.map((p) => (
+          <Card
             key={p.name}
-            initial={{ opacity: 0, y: 25 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.5, delay: idx * 0.1 }}
+            className="relative bg-[#0A0807]/90 backdrop-blur-md border border-[#5E5C5B]/30 shadow-[0_0_20px_rgba(255,215,0,0.2)] hover:shadow-[0_0_30px_rgba(255,215,0,0.4)] transition-all duration-500 transform hover:-translate-y-2 rounded-2xl p-4 md:p-6"
           >
-            <Card
-              className="relative overflow-hidden bg-[#0A0807]/80 border border-[var(--brand-gold)]/40 
-                shadow-[0_0_25px_-6px_rgba(212,175,55,0.3)] hover:shadow-[0_0_45px_-6px_rgba(212,175,55,0.7)] 
-                hover:-translate-y-3 transition-all duration-500 backdrop-blur-md group rounded-2xl p-2"
-            >
-              <div className="absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-transparent via-[var(--brand-gold)] to-transparent opacity-80" />
+            <CardHeader className="text-center">
+              <CardTitle className="text-2xl md:text-3xl font-semibold text-[#F8F6F5] tracking-wide">
+                {p.name}
+              </CardTitle>
+            </CardHeader>
 
-              <CardHeader className="pb-2">
-                <CardTitle className="text-2xl font-bold text-[var(--brand-gold)] text-center group-hover:scale-105 transition-transform">
-                  {p.name}
-                </CardTitle>
-              </CardHeader>
+            <CardContent className="space-y-2 text-sm text-[#F8F6F5]/80 text-center">
+              {p.lines.map((l) => (
+                <div key={l}>{l}</div>
+              ))}
 
-              <CardContent className="text-gray-200 text-sm leading-relaxed space-y-3 px-4 pb-8 pt-4">
-                {p.lines.map((l) => (
-                  <div key={l} className="text-center">
-                    {l}
-                  </div>
-                ))}
-
-                <div className="flex justify-center mt-8">
-                  <Button
-                    asChild
-                    className="relative overflow-hidden gold-gradient text-black font-semibold py-3 px-8 rounded-md shadow-md 
-                    transition-all duration-500 before:absolute before:inset-0 before:bg-[var(--brand-gold)] 
-                    before:scale-x-0 before:origin-left before:transition-transform before:duration-500 hover:before:scale-x-100 
-                    hover:text-black z-10"
-                  >
-                    <a href="#contact">Get a Quote</a>
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-          </motion.div>
+              <div className="mt-6 flex justify-center">
+                <Button className="relative overflow-hidden px-6 py-3 text-black bg-gradient-to-r from-[#FFD700]/60 to-[#F8F6F5]/60 rounded-full font-medium border border-[#F8F6F5]/30 backdrop-blur-md transition-all duration-300 hover:border-[#FFD700] hover:shadow-[0_0_15px_#FFD700] hover:bg-gradient-to-r hover:from-[#FFD700]/80 hover:to-[#F8F6F5]/80">
+                  <span className="relative z-10">Get a Quote</span>
+                  <span className="absolute inset-0 opacity-0 hover:opacity-100 transition-opacity duration-300 rounded-full"></span>
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
         ))}
       </div>
 
-      <p className="text-xs text-center opacity-70 mt-6">
-        ✨ Senior citizens receive a <span className="text-[var(--brand-gold)] font-semibold">15% discount</span> on eligible services.
+      <p className="text-xs text-center text-[#F8F6F5]/70 mt-6">
+        Senior citizens receive a <span className="text-[#FFD700] font-semibold">15% discount</span> on eligible services.
       </p>
-    </section>
+    </div>
   )
 }
