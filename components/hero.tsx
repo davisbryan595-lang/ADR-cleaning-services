@@ -8,16 +8,21 @@ export function Hero() {
   return (
     <section
       id="home"
-      className="relative w-full min-h-screen flex items-center justify-center pt-[72px] md:pt-[80px] overflow-hidden"
+      className="relative w-full h-[100dvh] flex items-center justify-center pt-[72px] md:pt-[80px] overflow-hidden"
     >
       {/* Background image */}
-      <Image
-        src="/modern-clean-home-interior-dark-background.jpg"
-        alt="Professional cleaning service background"
-        fill
-        priority
-        className="object-cover object-center brightness-75"
-      />
+      <div className="absolute inset-0 -z-10">
+        <Image
+          src="/modern-clean-home-interior-dark-background.jpg"
+          alt="Professional cleaning service background"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-center brightness-75"
+        />
+        {/* optional: subtle overlay */}
+        <div className="absolute inset-0 bg-black/30" />
+      </div>
 
       {/* Overlay content */}
       <div className="relative z-10 max-w-4xl text-center text-white px-6 sm:px-8 md:px-12">
