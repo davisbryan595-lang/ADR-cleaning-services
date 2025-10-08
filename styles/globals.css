@@ -124,3 +124,35 @@
     scroll-behavior: smooth;
   }
 }
+
+:root {
+  --brand-gold: #d4af37;
+}
+
+/* Floating animation for logo */
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+  100% { transform: translateY(0px); }
+}
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Liquid fill hover effect */
+a::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--brand-gold);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s ease-in-out;
+  z-index: 0;
+  border-radius: 6px;
+}
+
+a:hover::before {
+  transform: scaleX(1);
+}
+

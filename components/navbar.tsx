@@ -19,69 +19,80 @@ export function Navbar() {
   return (
     <header
       className={cn(
-        "fixed top-0 left-0 w-full z-50 transition-all duration-300",
+        "fixed top-0 left-0 w-full z-50 transition-all duration-500 backdrop-blur-md border-b border-border",
         scrolled
-          ? "bg-black/70 backdrop-blur-md border-b border-border shadow-md"
+          ? "bg-[rgba(255,215,0,0.15)] shadow-lg"
           : "bg-transparent"
       )}
       aria-label="Primary Navigation"
     >
       <div className="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between">
-        {/* Logo & Brand */}
-        <Link href="#home" className="flex items-center gap-3">
-          <Image
-            src="/logo.png"
-            alt="ADR Cleaning Service logo"
-            width={40}
-            height={40}
-            priority
-          />
-          <span className="font-semibold tracking-tight text-white">
+        {/* Logo */}
+        <Link href="#home" className="flex items-center gap-3 group relative">
+          <div className="relative">
+            <Image
+              src="/logo.png"
+              alt="ADR Cleaning Service logo"
+              width={42}
+              height={42}
+              priority
+              className="animate-float drop-shadow-[0_0_12px_rgba(255,215,0,0.6)] transition-all duration-500 group-hover:scale-105"
+            />
+            <div className="absolute inset-0 rounded-full bg-[radial-gradient(circle_at_center,rgba(255,215,0,0.4),transparent_70%)] blur-md opacity-60 animate-pulse" />
+          </div>
+          <span className="font-semibold tracking-tight text-black">
             ADR Cleaning Service
           </span>
         </Link>
 
-        {/* Desktop Nav */}
+        {/* Nav Links */}
         <nav className="hidden md:flex items-center gap-6 text-sm font-medium">
-          <a className="hover:text-[var(--brand-gold)] transition-colors" href="#services">
-            Services
-          </a>
-          <a className="hover:text-[var(--brand-gold)] transition-colors" href="#about">
-            About
-          </a>
-          <a className="hover:text-[var(--brand-gold)] transition-colors" href="#gallery">
-            Gallery
-          </a>
-          <a className="hover:text-[var(--brand-gold)] transition-colors" href="#testimonials">
-            Testimonials
-          </a>
-          <a className="hover:text-[var(--brand-gold)] transition-colors" href="#pricing">
-            Pricing
-          </a>
-          <a className="hover:text-[var(--brand-gold)] transition-colors" href="#contact">
-            Contact
-          </a>
+          {["Services", "About", "Gallery", "Testimonials", "Pricing", "Contact"].map((item) => (
+            <a
+              key={item}
+              href={`#${item.toLowerCase()}`}
+              className="relative overflow-hidden text-black px-3 py-2 transition-all duration-300 before:absolute before:inset-0 before:bg-[var(--brand-gold)] before:scale-x-0 before:origin-left before:transition-transform before:duration-500 hover:before:scale-x-100 hover:text-black"
+            >
+              <span className="relative z-10">{item}</span>
+            </a>
+          ))}
         </nav>
 
-        {/* Action Buttons */}
+        {/* Buttons */}
         <div className="flex items-center gap-2">
-          <Button
-            asChild
-            className="gold-gradient text-[color:var(--primary-foreground)] shadow-md"
-          >
-            <a href="tel:+15167127244" aria-label="Call ADR Cleaning Service">
-              Call
-            </a>
-          </Button>
-          <Button
-            asChild
-            variant="outline"
-            className="border-[var(--brand-gold)] text-[var(--brand-gold)] hover:bg-[var(--brand-gold)]/10"
-          >
-            <a href="#contact">Get a Quote</a>
-          </Button>
+          <LiquidButton href="tel:+15167127244" text="Call" className="gold-gradient" />
+          <LiquidButton href="#contact" text="Get a Quote" variant="outline" />
         </div>
       </div>
     </header>
+  )
+}
+
+/* Liquid Fill Button Component */
+function LiquidButton({
+  href,
+  text,
+  className,
+  variant,
+}: {
+  href: string
+  text: string
+  className?: string
+  variant?: "outline"
+}) {
+  return (
+    <Link
+      href={href}
+      className={cn(
+        "relative px-5 py-2 font-medium rounded-md overflow-hidden transition-all duration-500 group text-sm",
+        variant === "outline"
+          ? "border border-[var(--brand-gold)] text-[var(--brand-gold)] bg-transparent hover:text-black"
+          : "text-black",
+        className
+      )}
+    >
+      <span className="relative z-10">{text}</span>
+      <span className="absolute inset-0 bg-[var(--brand-gold)] scale-x-0 origin-left transition-transform duration-500 group-hover:scale-x-100" />
+    </Link>
   )
 }
