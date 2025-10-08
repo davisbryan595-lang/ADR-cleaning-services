@@ -52,7 +52,7 @@ export function Gallery() {
         alt: "Sanitizing a countertop",
       },
       {
-        src: "/roo.jpg",
+        src: "/roos.jpg",
         alt: "Modern spotless room",
       },
     ],
