@@ -66,9 +66,9 @@ export function ServicesGrid() {
             </CardHeader>
 
             <CardContent className="text-gray-200 text-sm leading-relaxed space-y-2">
-              <p>✨ Extra Bathroom — add-on available upon request.</p>
+              <p> Extra Bathroom — add-on available upon request.</p>
               <p>🪟 Window Cleaning — detailed glass and frame service.</p>
-              <p>🧼 Custom Requests — any additional cleaning typically costs $25 per service.</p>
+              <p> Custom Requests — any additional cleaning typically costs $25 per service.</p>
               <p className="text-[var(--brand-gold)] italic mt-3">
                 * Senior citizens receive a 15% discount on all services.
               </p>
