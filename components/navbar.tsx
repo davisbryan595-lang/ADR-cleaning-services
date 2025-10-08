@@ -4,10 +4,9 @@ import Image from "next/image"
 import Link from "next/link"
 import { useEffect, useState } from "react"
 import { Menu, X } from "lucide-react"
-import { motion, AnimatePresence } from "framer-motion"
 import { cn } from "@/lib/utils"
 
-// 🔸 Reusable Gold Button
+// Reusable Button
 function LiquidButton({
   href,
   text,
@@ -31,7 +30,7 @@ function LiquidButton({
       )}
     >
       <span className="relative z-10">{text}</span>
-      <span className="absolute inset-0 bg-[linear-gradient(90deg,var(--brand-gold),var(--brand-gold-light),var(--brand-gold))] scale-x-0 origin-left transition-transform duration-500 group-hover:scale-x-100" />
+      <span className="absolute inset-0 bg-[var(--brand-gold)] scale-x-0 origin-left transition-transform duration-500 group-hover:scale-x-100" />
     </Link>
   )
 }
@@ -58,7 +57,7 @@ export function Navbar() {
       aria-label="Primary Navigation"
     >
       <div className="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between">
-        {/* 🪶 Logo */}
+        {/* Logo */}
         <Link href="#home" className="flex items-center gap-3 group relative">
           <div className="relative">
             <Image
@@ -76,29 +75,26 @@ export function Navbar() {
           </span>
         </Link>
 
-        {/* 🌐 Desktop Nav */}
+        {/* Desktop Nav Links */}
         <nav className="hidden md:flex items-center gap-6 text-sm font-medium">
-          {["Services", "About", "Gallery", "Testimonials", "Pricing", "Contact"].map((item, i) => (
-            <motion.a
+          {["Services", "About", "Gallery", "Testimonials", "Pricing", "Contact"].map((item) => (
+            <a
               key={item}
               href={`#${item.toLowerCase()}`}
-              initial={{ opacity: 0, y: -5 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.05, duration: 0.4 }}
               className="relative overflow-hidden text-black px-3 py-2 transition-all duration-300 before:absolute before:inset-0 before:bg-[var(--brand-gold)] before:scale-x-0 before:origin-left before:transition-transform before:duration-500 hover:before:scale-x-100 hover:text-black"
             >
               <span className="relative z-10">{item}</span>
-            </motion.a>
+            </a>
           ))}
         </nav>
 
-        {/* 🎯 CTA (Desktop) */}
+        {/* CTA Buttons (Desktop Only) */}
         <div className="hidden md:flex items-center gap-2">
-          <LiquidButton href="tel:+15167127244" text="Call" />
+          <LiquidButton href="tel:+15167127244" text="Call" className="gold-gradient" />
           <LiquidButton href="#contact" text="Get a Quote" variant="outline" />
         </div>
 
-        {/* 📱 Mobile Menu Button */}
+        {/* Mobile Menu Button */}
         <button
           className="md:hidden text-black transition-transform duration-300 hover:scale-110"
           onClick={() => setMenuOpen(!menuOpen)}
@@ -108,44 +104,31 @@ export function Navbar() {
         </button>
       </div>
 
-      {/* 📱 Mobile Menu (Animated) */}
-      <AnimatePresence>
-        {menuOpen && (
-          <motion.div
-            key="mobile-menu"
-            initial={{ opacity: 0, y: -50 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -50 }}
-            transition={{ type: "spring", stiffness: 120, damping: 15 }}
-            className="fixed md:hidden top-[68px] left-0 w-full h-[calc(100vh-68px)] flex flex-col items-center justify-center gap-6 text-lg font-medium bg-[rgba(255,255,255,0.95)] backdrop-blur-lg z-40"
-          >
-            {["Services", "About", "Gallery", "Testimonials", "Pricing", "Contact"].map(
-              (item, i) => (
-                <motion.a
-                  key={item}
-                  href={`#${item.toLowerCase()}`}
-                  onClick={() => setMenuOpen(false)}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: i * 0.05 }}
-                  className="text-black hover:text-[var(--brand-gold)] transition-colors duration-300"
-                >
-                  {item}
-                </motion.a>
-              )
-            )}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.3 }}
-              className="flex flex-col gap-3 mt-6"
-            >
-              <LiquidButton href="tel:+15167127244" text="Call Now" />
-              <LiquidButton href="#contact" text="Get a Quote" variant="outline" />
-            </motion.div>
-          </motion.div>
+      {/* Mobile Menu */}
+      <div
+        className={cn(
+          "fixed md:hidden top-[68px] left-0 w-full h-[calc(100vh-68px)] flex flex-col items-center justify-center gap-6 text-lg font-medium bg-[rgba(255,255,255,0.95)] backdrop-blur-lg transition-all duration-500",
+          menuOpen
+            ? "translate-y-0 opacity-100 visible"
+            : "-translate-y-full opacity-0 invisible"
         )}
-      </AnimatePresence>
+      >
+        {["Services", "About", "Gallery", "Testimonials", "Pricing", "Contact"].map((item) => (
+          <a
+            key={item}
+            href={`#${item.toLowerCase()}`}
+            onClick={() => setMenuOpen(false)}
+            className="text-black hover:text-[var(--brand-gold)] transition-colors duration-300"
+          >
+            {item}
+          </a>
+        ))}
+
+        <div className="flex flex-col gap-3 mt-6">
+          <LiquidButton href="tel:+15167127244" text="Call Now" />
+          <LiquidButton href="#contact" text="Get a Quote" variant="outline" />
+        </div>
+      </div>
     </header>
   )
 }
