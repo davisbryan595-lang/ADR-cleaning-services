@@ -58,21 +58,18 @@ export function Navbar() {
     >
       <div className="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between">
         {/* Logo */}
-        <Link href="#home" className="flex items-center gap-3 group relative">
+        <Link href="#home" className="flex items-center group relative">
           <div className="relative">
             <Image
               src="/logo.png"
               alt="ADR Cleaning Service logo"
-              width={42}
-              height={42}
+              width={84}
+              height={84}
               priority
               className="animate-float drop-shadow-[0_0_12px_rgba(255,215,0,0.6)] transition-transform duration-500 group-hover:scale-105"
             />
             <div className="absolute inset-0 rounded-full bg-[radial-gradient(circle_at_center,rgba(255,215,0,0.4),transparent_70%)] blur-md opacity-60 animate-pulse" />
           </div>
-          <span className="font-semibold tracking-tight text-black">
-            ADR Cleaning Service
-          </span>
         </Link>
 
         {/* Desktop Nav Links */}
