@@ -6,11 +6,12 @@ import { Analytics } from "@vercel/analytics/next"
 import "./globals.css"
 import { Suspense } from "react"
 
-// New imports
-import { Toaster } from "@/components/ui/toaster"
-import { Navbar } from "@/components/navbar"
+// Dynamic client components
+import dynamic from 'next/dynamic'
+const Navbar = dynamic(() => import('@/components/navbar'))
+const Toaster = dynamic(() => import('@/components/ui/toaster'))
+const AnchorSmooth = dynamic(() => import('@/components/client/anchor-smooth'))
 import { Footer } from "@/components/footer"
-import AnchorSmooth from "@/components/client/anchor-smooth"
 
 export const metadata: Metadata = {
   title: "ADR Cleaning Service LLC | Dallas, TX",
