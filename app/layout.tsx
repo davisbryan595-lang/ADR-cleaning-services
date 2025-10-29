@@ -8,8 +8,8 @@ import { Suspense } from "react"
 
 // Dynamic client components
 import dynamic from 'next/dynamic'
-const Navbar = dynamic(() => import('@/components/navbar'))
-const Toaster = dynamic(() => import('@/components/ui/toaster'))
+const Navbar = dynamic(() => import('@/components/navbar').then((mod) => mod.Navbar))
+const Toaster = dynamic(() => import('@/components/ui/toaster').then((mod) => mod.Toaster))
 const AnchorSmooth = dynamic(() => import('@/components/client/anchor-smooth'))
 import { Footer } from "@/components/footer"
 
