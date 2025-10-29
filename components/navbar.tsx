@@ -56,7 +56,7 @@ export function Navbar() {
       )}
       aria-label="Primary Navigation"
     >
-      <div className="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between">
+      <div className="mx-auto max-w-6xl px-4 py-1 flex items-center justify-between">
         {/* Logo */}
         <Link href="#home" className="flex items-center group relative">
           <div className="relative">
