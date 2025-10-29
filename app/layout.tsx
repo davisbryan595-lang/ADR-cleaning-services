@@ -1,17 +1,16 @@
-"use client"
-
 import type React from "react"
 import type { Metadata } from "next"
 import { GeistSans } from "geist/font/sans"
 import { GeistMono } from "geist/font/mono"
 import { Analytics } from "@vercel/analytics/next"
 import "./globals.css"
-import { Suspense, useEffect } from "react"
+import { Suspense } from "react"
 
 // New imports
 import { Toaster } from "@/components/ui/toaster"
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
+import AnchorSmooth from "@/components/client/anchor-smooth"
 
 export const metadata: Metadata = {
   title: "ADR Cleaning Service LLC | Dallas, TX",
@@ -40,24 +39,6 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  // ✅ Smooth Scroll for all anchor links site-wide
-  useEffect(() => {
-    const handleSmoothScroll = (e: MouseEvent) => {
-      const target = e.target as HTMLAnchorElement
-      if (target.tagName === "A" && target.getAttribute("href")?.startsWith("#")) {
-        e.preventDefault()
-        const id = target.getAttribute("href")!.substring(1)
-        const el = document.getElementById(id)
-        if (el) {
-          el.scrollIntoView({ behavior: "smooth" })
-        }
-      }
-    }
-
-    document.addEventListener("click", handleSmoothScroll)
-    return () => document.removeEventListener("click", handleSmoothScroll)
-  }, [])
-
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
@@ -85,6 +66,7 @@ export default function RootLayout({
           <Footer />
           <Toaster />
         </Suspense>
+        <AnchorSmooth />
         <Analytics />
         <script
           type="application/ld+json"
